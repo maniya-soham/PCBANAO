@@ -1,0 +1,4 @@
+
+# For Apache users; make sure uploads are accessible
+Options -Indexes
+AddType application/x-httpd-php .php

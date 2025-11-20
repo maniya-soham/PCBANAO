@@ -1,0 +1,10 @@
+<?php require_once __DIR__ . '/../helpers.php';
+require_login();
+verify_csrf();
+require_role('admin');
+$pdo = db();
+$id = intval($_POST['id'] ?? 0);
+$st = $_POST['status'] ?? 'placed';
+$pdo->prepare("UPDATE orders SET status=? WHERE id=?")->execute([$st, $id]);
+flash('msg', 'Order status updated');
+header('Location: /pcbanaop2/admin/dashboard.php');

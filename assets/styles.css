@@ -1,0 +1,677 @@
+/* =========================================================
+   pcbanao-updated-palette-v4-enhanced.categorized.light.css
+   Light theme version — tokens first, then categorized components.
+   ========================================================= */
+
+/* ===================== 00 - DESIGN TOKENS ===================== */
+:root {
+  /* layout */
+  --page-margin: 18px;
+  --container-max: 1200px;
+  --gutter: 20px;
+
+  /* stripes (brand) */
+  --stripe-1: #f6f7fb; /* palest */
+  --stripe-2: #4f739d; /* deep slate-blue (accent) */
+  --stripe-3: #6f9ec9; /* mid blue */
+  --stripe-4: #89b4df; /* light blue */
+  --stripe-5: #fde7de; /* pale peach */
+
+  /* overall surfaces & background */
+  --bg: linear-gradient(180deg, #f8fafc, #f1f5f9); /* page background */
+  --card: #ffffff; /* primary card surface */
+  --card-2: #f7fbff; /* slightly lighter surface */
+  --muted-surface: #eef3fb;
+
+  /* type */
+  --text: #081020; /* primary */
+  --muted: #586572; /* secondary */
+  --muted-2: #6b7280;
+
+  /* accents */
+  --accent: var(--stripe-2);
+  --accent-2: var(--stripe-3);
+  --accent-3: #14b8a6; /* success / green */
+
+  /* borders & elevation */
+  --border: rgba(8, 16, 32, 0.06);
+  --soft-shadow: 0 12px 32px rgba(6, 12, 22, 0.06);
+  --soft-shadow-2: 0 10px 28px rgba(6, 12, 22, 0.05);
+
+  /* radii & spacing */
+  --radius: 12px;
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 28px;
+
+  /* typography */
+  --font-base: 16px;
+  --fs-lg: 2.1rem;
+
+  /* motion & focus */
+  --will-change-easing: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --focus-ring: rgba(79, 115, 157, 0.14);
+}
+
+/* ===================== 10 - GLOBAL RESET & PREFERENCES ===================== */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  padding: var(--page-margin);
+  margin: 0;
+}
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #f8fafc, #f1f5f9), 
+              url("bg.png");
+
+  background-repeat: repeat;
+  background-size: cover;   /* cover screen */
+  background-attachment: fixed; /* parallax effect */
+  background-position: center;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+  -webkit-font-feature-settings: "liga" 1;
+}
+
+/* reduced motion/data preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+@media (prefers-reduced-data: reduce) {
+  img,
+  video {
+    filter: blur(1px);
+  }
+}
+
+/* ===================== 20 - LAYOUT CONTAINERS ===================== */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 22px;
+}
+.section {
+  padding-block: var(--space-md);
+}
+.section + .section {
+  margin-top: var(--space-md);
+}
+
+/* ===================== 30 - NAVIGATION ===================== */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.95)
+  );
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 12px;
+  z-index: 60;
+  box-shadow: 0 6px 18px rgba(6, 12, 22, 0.04);
+}
+.nav .logo {
+  font-weight: 900;
+  font-size: 1.25rem;
+  color: var(--text);
+  letter-spacing: 0.3px;
+}
+.nav .spacer {
+  flex: 1;
+}
+
+/* nav palette stripe */
+.nav .brand-stripe {
+  height: 8px;
+  width: 120px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.nav .brand-stripe::before {
+  content: "";
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--stripe-1),
+    var(--stripe-2),
+    var(--stripe-3),
+    var(--stripe-4),
+    var(--stripe-5)
+  );
+}
+
+/* ===================== 40 - HERO & SPLASH ===================== */
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 0.9fr;
+  gap: var(--gutter);
+  align-items: center;
+  margin: 30px 0;
+}
+.hero .banner {
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  padding: 28px;
+  border-radius: var(--radius);
+  min-height: 220px;
+  border: 1px solid var(--border);
+  box-shadow: var(--soft-shadow);
+}
+.hero .banner h1 {
+  font-size: var(--fs-lg);
+  margin: 0 0 10px;
+  font-weight: 900;
+  color: var(--text);
+}
+.hero .banner p {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.hero .banner .palette-preview {
+  height: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.hero .banner .palette-preview::before {
+  content: "";
+  display: block;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--stripe-1),
+    var(--stripe-2),
+    var(--stripe-3),
+    var(--stripe-4),
+    var(--stripe-5)
+  );
+}
+
+/* hero splash variant */
+.hero.splash {
+  position: relative;
+  overflow: visible;
+  /* optionally add a splash image using --splash-url on :root */
+  color: var(--text);
+}
+.hero.splash .banner {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.95)
+  );
+}
+
+/* ===================== 50 - BUTTONS & CONTROLS ===================== */
+.btn {
+  appearance: none;
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 11px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.18s var(--will-change-easing),
+    box-shadow 0.18s var(--will-change-easing), background 0.14s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(6, 12, 22, 0.08);
+  background-position: 100% 50%;
+}
+.btn.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(8, 16, 32, 0.06);
+  color: var(--text);
+}
+
+/* accessible focus */
+:where(a, button, input, textarea):focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* ===================== 60 - GRID, CARDS & PRODUCTS ===================== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--gutter);
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.2s var(--will-change-easing),
+    box-shadow 0.2s var(--will-change-easing);
+  margin-bottom: 12px;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--soft-shadow-2);
+}
+.card .stripe {
+  height: 6px;
+  background: linear-gradient(90deg, var(--stripe-2), var(--stripe-3));
+}
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.28s var(--will-change-easing);
+  background: #f0f4f8;
+}
+.card:hover img {
+  transform: scale(1.04);
+}
+.card .p {
+  padding: 14px;
+}
+
+/* product-specific */
+.product-card .image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--card-2), var(--stripe-5));
+}
+.product-card .image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 0.32s var(--will-change-easing), filter 0.32s ease;
+}
+.product-card:hover .image-wrap img {
+  transform: scale(1.07);
+  filter: brightness(1.03);
+}
+
+/* ===================== 70 - QUICK CATEGORIES (3-COL LOCK) ===================== */
+.quick-vertical {
+  display: grid;
+  gap: 18px;
+  margin-top: 18px;
+}
+@media (min-width: 900px) {
+  .quick-vertical {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 560px) and (max-width: 899px) {
+  .quick-vertical {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.qc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: transform 0.18s var(--will-change-easing),
+    box-shadow 0.18s var(--will-change-easing), background 0.22s ease;
+  will-change: transform, box-shadow;
+}
+.qc-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(6, 12, 22, 0.06);
+  background: linear-gradient(180deg, #ffffff, #f0f7ff);
+}
+.qc-thumb {
+  width: 76px;
+  height: 76px;
+  flex: 0 0 76px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: linear-gradient(90deg, var(--stripe-2), var(--stripe-3));
+  box-shadow: 0 6px 18px rgba(6, 12, 22, 0.04);
+}
+.qc-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.qc-title {
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text);
+  font-size: 1.02rem;
+}
+.qc-desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 42ch;
+}
+.qc-item {
+  min-height: 92px;
+}
+
+/* entrance animation */
+.qc-item.fade-up {
+  animation: qcEnter 0.48s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+@keyframes qcEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* overlay helper */
+.quick-vertical.overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95),
+    rgba(255, 255, 255, 0.9)
+  );
+  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(6, 12, 22, 0.04);
+}
+
+/* ===================== 80 - PROFILE GRID / KPI / CAROUSEL ===================== */
+.profile-grid {
+  display: grid;
+  gap: 22px;
+}
+@media (min-width: 900px) {
+  .profile-grid {
+    grid-template-columns: 1fr 2fr;
+  }
+  .profile-grid .card:first-child {
+    grid-row: span 2;
+  }
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+@media (max-width: 720px) {
+  .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.kpi {
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 22px rgba(6, 12, 22, 0.04);
+}
+
+.carousel {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+.carousel::-webkit-scrollbar {
+  height: 6px;
+}
+.carousel::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--stripe-2), var(--stripe-3));
+  border-radius: 6px;
+}
+.carousel .card {
+  min-width: 240px;
+}
+
+/* ===================== 90 - TYPOGRAPHY / BADGES / TABLES ===================== */
+h1,
+h2,
+h3 {
+  margin: 0.35rem 0 0.9rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--stripe-5);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+.badge.accent {
+  background: linear-gradient(90deg, var(--stripe-2), var(--stripe-3));
+  color: #fff;
+  border: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+.table th,
+.table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(12, 20, 30, 0.04);
+  text-align: left;
+}
+.table th {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ===================== 98 - UTILITIES & ACCESSIBILITY ===================== */
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.text-muted {
+  color: var(--muted);
+}
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p-12 {
+  padding: 12px;
+}
+.m-0 {
+  margin: 0;
+}
+
+/* accessible focus */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* dark header helper (kept if you toggle) */
+body.dark-header .nav {
+  background: linear-gradient(90deg, var(--stripe-1), rgba(0, 0, 0, 0.06));
+  color: #fff;
+}
+body.dark-header .nav .logo {
+  color: #fff;
+}
+
+/* ===================== 99 - ANIMATIONS & PERFORMANCE HINTS ===================== */
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.2, 0.9, 0.2, 1) both;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* image / perf hints */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+[hidden] {
+  display: none !important;
+}
+
+/* ===================== LOCAL OVERRIDES (replace legacy hard-coded dark values) ===================== */
+/* Converted previously hard-coded dark section to use light tokens */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+a:hover {
+  color: var(--accent-2);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.btn {
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-weight: 600;
+}
+.btn.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.card {
+  border-radius: 18px;
+}
+.card {
+  margin-bottom: 12px;
+}
+
+/* Inputs */
+.input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(79, 115, 157, 0.08);
+}
+
+/* QC / vertical quick categories - preserve earlier behavior but light-friendly */
+.quick-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+@media (min-width: 900px) {
+  .quick-vertical {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.qc-item {
+  text-decoration: none;
+}
+.qc-item:hover {
+  background: linear-gradient(180deg, #fff, #f4fbff);
+  box-shadow: 0 8px 22px rgba(6, 12, 22, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Hero visual */
+.hero .banner {
+  border-radius: 22px;
+  padding: 32px;
+}
+
+/* Minor components */
+.kpi {
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border-radius: 18px;
+  padding: 18px;
+}
+
+/* Footer */
+footer {
+  opacity: 0.9;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Toast / warnings tuned for light */
+.toast {
+  background: #0f5132;
+  color: #e8ffef;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 12px 0;
+  animation: fadeIn 0.4s ease;
+}
+.warning {
+  background: #7a422a;
+  color: #fff7e8;
+}
+
+/* end of file */
